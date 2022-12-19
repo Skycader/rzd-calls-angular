@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../auth/services/user.service';
 
 export interface PeriodicElement {
   name: string;
@@ -20,7 +21,7 @@ export class LogComponent implements OnInit {
 
    
 
-  constructor() { }
+  constructor(protected userService: UserService) { }
 
   ngOnInit(): void {
   }

@@ -6,8 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CallComponent } from './components/call/call.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/pages/home/home.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { SharedModule } from './components/shared/shared.module';
 import { MaterialModule } from './modules/material/material.module';
 
 
@@ -25,6 +26,7 @@ import { MaterialModule } from './modules/material/material.module';
     MaterialModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,6 @@
 <div class="container">
-  <mat-card class="warning" *ngIf="userService.user.login.length === 0">
-    <mat-card-content  >
-      <h1>Пожалуйста, сначала войдите в аккаунт</h1>
-    </mat-card-content>
-  </mat-card>
+
+  <app-login-first  *ngIf="userService.user.login.length === 0"></app-login-first>
 
   <app-call *ngIf="userService.user.login.length !== 0"></app-call>
 </div>
