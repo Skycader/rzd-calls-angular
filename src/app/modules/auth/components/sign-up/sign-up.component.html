@@ -1,0 +1,35 @@
+<div class="container">
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Регистрация аккаунта</h1>
+
+  <div class="form-control">
+    <label>Логин</label>
+    <input type="text" placeholder="Логин" formControlName="login" />
+    <div class="validation"></div>
+  </div>
+
+  <div class="form-control">
+    <label>Пароль</label>
+    <input
+      type="password"
+      placeholder="Пароль"
+      formControlName="password"
+    />
+    <div class="validation"></div>
+  </div>
+
+  <div class="form-control">
+    <label>Повторите пароль</label>
+    <input
+      type="password"
+      placeholder="Пароль"
+      formControlName="repeatPassword"
+    />
+    <div class="validation"></div>
+  </div>
+
+  <button class="btn" type="submit" [disabled]="form.invalid">
+    Зарегестрироваться
+  </button>
+</form>
+</div>

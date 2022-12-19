@@ -3,25 +3,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  selector: 'app-signUp',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class SignUpComponent implements OnInit {
   username: string = ""
 
   form: FormGroup = new FormGroup({
     login: new FormControl('',[
       Validators.required,
-      Validators.minLength(6)
+      Validators.minLength(3)
     ]),
     password: new FormControl('',[
       Validators.required,
-      Validators.minLength(6)
+      Validators.minLength(3)
     ]),
     repeatPassword: new FormControl('',[
       Validators.required,
-      Validators.minLength(6)
+      Validators.minLength(3)
     ]),
   })
 
@@ -29,12 +29,12 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  
   }
 
   submit() {
     console.log("submit event", this.form.value)
-
+    const {login, password } = this.form.value
+    this.userService.signUp(login, password)
   }
 
 }

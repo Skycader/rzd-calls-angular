@@ -1,0 +1,11 @@
+<div class="container">
+
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Здравствуйте, {{userService.user.login}}</h1>
+  
+  
+    <button (click)="userService.signOut() " class="btn" type="submit">
+      Выйти
+    </button>
+  </form>
+  </div>

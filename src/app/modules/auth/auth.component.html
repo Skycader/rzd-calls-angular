@@ -1,1 +1,14 @@
-<h1>Auth works</h1>
+<mat-tab-group *ngIf="userService.user.login.length === 0">
+  <mat-tab label="Авторизация">
+   
+      <app-signIn></app-signIn>
+     
+  </mat-tab>
+  <mat-tab label="Регистрация">
+    <app-signUp></app-signUp>
+ </mat-tab>
+</mat-tab-group>
+
+<app-signOut *ngIf="userService.user.login.length !== 0"></app-signOut>
+
+

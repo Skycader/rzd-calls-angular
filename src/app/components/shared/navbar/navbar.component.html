@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" class="navbar">
   <div>
-    <span routerLink="/">RZD Call Center</span>
+    <span routerLink="/">РЖД Колл-центр</span>
   </div>
   <div>
-    <span routerLink="/auth">Login</span>
+    <span routerLink="/auth">{{ userService.user.login|| "Войти" }}</span>
   </div>
 </mat-toolbar>
