@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CallService } from 'src/app/services/call.service';
 import { UserService } from 'src/app/modules/auth/services/user.service';
+import { LoggingService } from 'src/app/modules/log/services/logging.service';
+import { CallService } from 'src/app/services/call.service';
 
 @Component({
   selector: 'app-call',
@@ -28,11 +29,14 @@ export class CallComponent implements OnInit {
   ]
   constructor(
     protected userService: UserService,
-    protected callService: CallService
+    protected callService: CallService,
+    protected loggingService: LoggingService
     ) {
   }
 
   ngOnInit(): void {
+    window.log = this.loggingService
+    console.log(this.loggingService)
   }
 
   submit() {
