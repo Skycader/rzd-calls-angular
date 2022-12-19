@@ -1,11 +1,13 @@
 <div class="container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card>
+      <mat-card-content>
+        <h1>Здравствуйте, {{ userService.user.login }}</h1>
 
-  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
-    <h1>Здравствуйте, {{userService.user.login}}</h1>
-  
-  
-    <button (click)="userService.signOut() " class="btn" type="submit">
-      Выйти
-    </button>
+        <button (click)="userService.signOut()" class="btn" type="submit">
+          Выйти
+        </button>
+      </mat-card-content>
+    </mat-card>
   </form>
-  </div>
+</div>

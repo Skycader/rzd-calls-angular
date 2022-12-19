@@ -1,1 +1,9 @@
-<p>home works!</p>
+<div class="container">
+  <mat-card class="warning" *ngIf="userService.user.login.length === 0">
+    <mat-card-content  >
+      <h1>Пожалуйста, сначала войдите в аккаунт</h1>
+    </mat-card-content>
+  </mat-card>
+
+  <app-call *ngIf="userService.user.login.length !== 0"></app-call>
+</div>

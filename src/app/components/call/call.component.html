@@ -1,0 +1,40 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card>
+      <mat-card-content>
+      
+      <h1>Звонок</h1>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Кому</mat-label>
+        <input matInput type="text" formControlName="caller">
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Тип звонка</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button (click)="callService.startCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Начать звонок
+      </button>
+
+       <button (click)="callService.stopCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Закончить звонок
+      </button>
+
+      <button (click)="callService.playCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Прослушать звонок
+      </button>
+
+      <button routerLink="/log" mat-raised-button color="primary" type="submit">
+       Открыть журнал звонков
+      </button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+  </div>

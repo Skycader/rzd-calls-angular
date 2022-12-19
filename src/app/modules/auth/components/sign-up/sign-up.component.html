@@ -1,35 +1,29 @@
 <div class="container">
-<form class="card" [formGroup]="form" (ngSubmit)="submit()">
-  <h1>Регистрация аккаунта</h1>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-card>
+    <mat-card-content>
+    
+    <h1>Регистрация аккаунта</h1>
 
-  <div class="form-control">
-    <label>Логин</label>
-    <input type="text" placeholder="Логин" formControlName="login" />
-    <div class="validation"></div>
-  </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Логин</mat-label>
+      <input matInput type="text" formControlName="login">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Пароль</mat-label>
+      <input matInput type="password" formControlName="password">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Повторите пароль</mat-label>
+      <input matInput type="password" formControlName="repeatPassword">
+    </mat-form-field>
 
-  <div class="form-control">
-    <label>Пароль</label>
-    <input
-      type="password"
-      placeholder="Пароль"
-      formControlName="password"
-    />
-    <div class="validation"></div>
-  </div>
-
-  <div class="form-control">
-    <label>Повторите пароль</label>
-    <input
-      type="password"
-      placeholder="Пароль"
-      formControlName="repeatPassword"
-    />
-    <div class="validation"></div>
-  </div>
-
-  <button class="btn" type="submit" [disabled]="form.invalid">
-    Зарегестрироваться
-  </button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Зарегестрироваться
+    </button>
+    </mat-card-content>
+  </mat-card>
 </form>
 </div>

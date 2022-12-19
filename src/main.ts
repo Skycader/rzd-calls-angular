@@ -4,6 +4,15 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+export {};
+
+declare global {
+  interface Window {
+    recorder: any;
+  }
+}
+
+
 if (environment.production) {
   enableProdMode();
 }

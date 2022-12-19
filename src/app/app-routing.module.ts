@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/pages/home/home.component';
-import { AuthComponent } from './modules/auth/auth.component';
 
 const routes: Routes = [
   {
@@ -12,6 +11,11 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module')
     .then(m => m.AuthModule)
+  },
+  {
+    path: 'log',
+    loadChildren: () => import('./modules/log/log.module')
+    .then(m => m.LogModule)
   },
   {
     path: '**',
