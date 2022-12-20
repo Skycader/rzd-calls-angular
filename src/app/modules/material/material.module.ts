@@ -10,6 +10,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import { MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 const MaterialComponents = [
@@ -23,7 +24,8 @@ const MaterialComponents = [
   MatTabsModule,
   MatCardModule,
   MatSelectModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule
 ]
 
 @NgModule({

@@ -1,10 +1,10 @@
 <mat-tab-group *ngIf="userService.user.login.length === 0">
   <mat-tab label="Авторизация">
-    <app-signIn></app-signIn>
+    <app-sign-in></app-sign-in>
   </mat-tab>
   <mat-tab label="Регистрация">
-    <app-signUp></app-signUp>
+    <app-sign-up></app-sign-up>
   </mat-tab>
 </mat-tab-group>
 
-<app-signOut *ngIf="userService.user.login.length !== 0"></app-signOut>
+<app-sign-out *ngIf="userService.user.login.length !== 0"></app-sign-out>
