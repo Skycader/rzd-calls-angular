@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/modules/material/material.module';
 import { LoginFirstComponent } from './login-first/login-first.component';
 import { ModalComponent } from './modal/modal.component';
@@ -16,7 +17,8 @@ const sharedComponents = [
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     sharedComponents

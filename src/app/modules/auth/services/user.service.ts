@@ -11,7 +11,7 @@ export class UserService {
     password: ""
   }
 
-  username: string = ""
+  
 
   constructor() { }
 
@@ -47,5 +47,9 @@ export class UserService {
   signOut() {
     this.user.login = ""
     localStorage.removeItem("currentUser")
+  }
+
+  getUser() {
+    return this.user
   }
 }

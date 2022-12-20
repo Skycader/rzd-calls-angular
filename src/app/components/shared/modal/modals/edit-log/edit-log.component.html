@@ -1,5 +1,44 @@
-<h1 mat-dialog-title>Dialog with elements</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+<h1 mat-dialog-title>Лог звонка</h1>
+<div mat-dialog-content>
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      
+          <h1>Звонок от {{ data.begining | date: "dd/MM/yyyy HH:mm" }}</h1>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Кому</mat-label>
+            <input matInput type="text" formControlName="caller" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Время начала</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="begining">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Тип звонка</mat-label>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div mat-dialog-actions>
+            <button type="submit" color="primary" mat-raised-button mat-dialog-close>
+              Сохранить
+            </button>
+          </div>
+
+          <div mat-dialog-actions>
+            <button (click)="dropItem()" color="warn" mat-raised-button mat-dialog-close>
+              Удалить
+            </button>
+          </div>
+        
+    </form>
+  </div>
 </div>

@@ -6,18 +6,38 @@ import { ILog, ILogData } from '../models/log';
   providedIn: 'root',
 })
 export class LoggingService {
-  start = `log.${this.userService.user.password}.start`;
-  end = `log.${this.userService.user.password}.end`;
+
+  logList: ILogData[] = []
 
   constructor(protected userService: UserService) {}
 
+  start() {
+    return `log.${this.getUser().login}${
+      this.getUser().password
+    }.start`;
+  } 
+  end() {
+    return `log.${this.getUser().login}${this.getUser().password}.end`;
+  }
+
+  getUser() {
+    const user = JSON.parse(localStorage.getItem('currentUser') || '');
+    return user;
+  }
   setLog(id: string, log: ILog) {
     localStorage.setItem(this.formId(id), JSON.stringify(log));
   }
   getLog(id: string): ILog {
+
     const data = localStorage.getItem(this.formId(id)) || '';
-    
-    return JSON.parse(data)
+
+    return JSON.parse(data);
+  }
+
+  editLog(id: string, data: ILogData) {
+    const log = this.getLog(id)
+    log.data = data
+    localStorage.setItem(this.formId(id), JSON.stringify(log))
   }
 
   setItem(key: string, data: string) {
@@ -29,15 +49,15 @@ export class LoggingService {
   }
 
   getStart() {
-    return this.getItem(this.start);
+    return this.getItem(this.start());
   }
 
   getEnd() {
-    return this.getItem(this.end);
+    return this.getItem(this.end());
   }
 
   formId(id: string) {
-    return `log.${this.userService.user.password}.${id}`;
+    return `log.${this.userService.user.login}${this.userService.user.password}.${id}`;
   }
 
   /**
@@ -53,17 +73,17 @@ export class LoggingService {
       data,
     };
     if (this.getStart() === '') {
-      this.setItem(this.start, id);
-      this.setItem(this.end, id);
+      this.setItem(this.start(), id);
+      this.setItem(this.end(), id);
       this.setLog(id, log);
     } else {
       log.data = data;
-      log.prev = this.getItem(this.end);
+      log.prev = this.getItem(this.end());
       log.next = '';
-      let lastLog = this.getLog(this.getItem(this.end));
+      let lastLog = this.getLog(this.getItem(this.end()));
       lastLog.next = id;
-      this.setLog(this.getItem(this.end), lastLog);
-      this.setItem(this.end, id);
+      this.setLog(this.getItem(this.end()), lastLog);
+      this.setItem(this.end(), id);
       this.setLog(id, log);
     }
 
@@ -71,46 +91,60 @@ export class LoggingService {
   }
 
   listLog() {
-    const res: ILogData[] = []
-    let cursor = this.getStart()
+    const res: ILogData[] = [];
+    let cursor = this.getStart();
     while (cursor) {
-      let log = this.getLog(cursor)
-      log.data.id = log.id
-      res.push(log.data)
-      cursor = log.next
+      let log = this.getLog(cursor);
+      log.data.id = log.id;
+      res.push(log.data);
+      cursor = log.next;
     }
-    return res
+    return res;
+  }
+
+  renderLog() {
+    this.logList = this.listLog()
   }
   removeLog(id: string) {
-    
     /* {1} -> {2} -> {3} 
     =>
-     {1} -> {3} */ 
-    const log = this.getLog(id)
-    const prevLog = this.getLog(log.prev)
-    const nextLog = this.getLog(log.next)
+     {1} -> {3} */
+    const log = this.getLog(id);
 
-    nextLog.prev = log.prev
-    prevLog.next = log.next
+    if (log.prev !== '') {
+      const prevLog = this.getLog(log.prev);
+      prevLog.next = log.next;
+      this.setLog(log.prev, prevLog);
+    } else {
+      localStorage.setItem(this.start(),log.next)
+    }
+
+    if (log.next !== '') {
+      const nextLog = this.getLog(log.next);
+      nextLog.prev = log.prev;
+      this.setLog(log.next, nextLog);
+    } else {
+      localStorage.setItem(this.end(),log.prev)
+    }
     
-    this.setLog(log.prev, prevLog)
-    this.setLog(log.next, nextLog)
+    localStorage.removeItem(this.formId(id));
 
-    localStorage.removeItem(id)
-
-    return "OK"
-
+    return 'OK';
   }
 
   dropLog() {
-    let cursor = this.getStart()
+    let cursor = this.getStart();
     while (cursor) {
-      let log = this.getLog(cursor)
-      try {this.removeLog(log.prev)} catch(e) {console.error(e, log.prev)}
-      cursor = log.next
+      let log = this.getLog(cursor);
+      try {
+        this.removeLog(log.prev);
+      } catch (e) {
+        console.error(e, log.prev);
+      }
+      cursor = log.next;
     }
-    localStorage.removeItem(this.formId('start'))
-    localStorage.removeItem(this.formId('end'))
+    localStorage.removeItem(this.formId('start'));
+    localStorage.removeItem(this.formId('end'));
   }
 
   makeid(length: number): string {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { EditLogComponent } from 'src/app/components/shared/modal/modals/edit-log/edit-log.component';
 import { UserService } from '../auth/services/user.service';
 import {  ILogData } from './models/log';
 import { LoggingService } from './services/logging.service';
@@ -14,16 +16,15 @@ import { LoggingService } from './services/logging.service';
   styleUrls: ['./log.component.scss'],
 })
 export class LogComponent implements OnInit {
-  dataSource: ILogData[] = [];
 
   constructor(
     protected userService: UserService,
-    protected loggingService: LoggingService
+    protected loggingService: LoggingService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.dataSource = this.loggingService.listLog()
-    console.log(this.dataSource)
+    this.loggingService.renderLog()
   }
   displayedColumns: string[] = [
     'begining',
@@ -33,8 +34,9 @@ export class LogComponent implements OnInit {
     'type',
   ];
 
-  openDialogue(row:any) {
-    alert(row)
-    console.log(row)
+  openDialogue(row:ILogData) {
+      this.dialog.open(EditLogComponent, {
+        data: row
+      }); 
   }
 }

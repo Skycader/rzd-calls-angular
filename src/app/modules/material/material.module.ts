@@ -11,6 +11,8 @@ import {MatCardModule} from '@angular/material/card';
 import { MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 const MaterialComponents = [
@@ -25,7 +27,9 @@ const MaterialComponents = [
   MatCardModule,
   MatSelectModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ]
 
 @NgModule({

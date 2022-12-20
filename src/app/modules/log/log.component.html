@@ -8,7 +8,7 @@
   <table
     *ngIf="userService.user.login.length !== 0"
     mat-table
-    [dataSource]="dataSource"
+    [dataSource]="loggingService.logList"
     class="mat-elevation-z8"
   >
     <!--- Note that these columns can be defined in any order.
