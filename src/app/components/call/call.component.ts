@@ -15,7 +15,9 @@ export class CallComponent implements OnInit {
     type: new FormControl('', [Validators.required]),
   });
 
+  timer = 0
   begining = 0
+  interval:any = 0
 
   types = [
     'A: Вызов машинист',
@@ -37,9 +39,11 @@ export class CallComponent implements OnInit {
   startCall() {
     this.callService.startCall();
     this.begining = Date.now()
+    this.interval = setInterval(()=>{this.timer = Date.now() - this.begining},1000)
   }
 
   stopCall() {
+    clearInterval(this.interval)
     this.callService.stopCall();
     const data = {...this.form.value}
     data.type = data.type[0]
