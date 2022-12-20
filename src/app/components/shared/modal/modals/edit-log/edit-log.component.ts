@@ -28,9 +28,15 @@ export class EditLogComponent implements OnInit {
       Validators.required,
       Validators.minLength(3),
     ]),
-    type: new FormControl(this.getType(this.data.type), [
+    ending: new FormControl(new Date(this.data.ending), [
       Validators.required,
       Validators.minLength(3),
+    ]),
+    type: new FormControl(this.getType(this.data.type), [
+      Validators.required,
+    ]),
+    duration: new FormControl(this.data.duration, [
+      Validators.required,
     ]),
   });
   selected = '';

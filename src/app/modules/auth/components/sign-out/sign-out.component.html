@@ -4,7 +4,8 @@
       <mat-card-content>
         <h1>Здравствуйте, {{ userService.user.login }}</h1>
 
-        <button (click)="userService.signOut()" class="btn" type="submit">
+
+        <button mat-raised-button color="primary" (click)="userService.signOut()" class="btn" type="submit">
           Выйти
         </button>
       </mat-card-content>

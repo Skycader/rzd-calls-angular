@@ -6,7 +6,7 @@
           <h1>Звонок от {{ data.begining | date: "dd/MM/yyyy HH:mm" }}</h1>
 
           <mat-form-field appearance="fill">
-            <mat-label>Кому</mat-label>
+            <mat-label>ФИО</mat-label>
             <input matInput type="text" formControlName="caller" />
           </mat-form-field>
 
@@ -17,6 +17,12 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
+          <mat-form-field appearance="fill">
+            <mat-label>Время конца</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="ending">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Тип звонка</mat-label>
@@ -25,6 +31,11 @@
                 {{ type }}
               </mat-option>
             </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Длительность звонка</mat-label>
+            <input matInput type="text" formControlName="duration" />
           </mat-form-field>
 
           <div mat-dialog-actions>

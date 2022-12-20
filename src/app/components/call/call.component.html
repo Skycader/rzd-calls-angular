@@ -19,15 +19,15 @@
         </mat-select>
       </mat-form-field>
   
-      <button (click)="callService.startCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      <button (click)="startCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
         Начать звонок
       </button>
 
-       <button (click)="callService.stopCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+       <button (click)="stopCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
         Закончить звонок
       </button>
 
-      <button (click)="callService.playCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      <button (click)="playCall()" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
         Прослушать звонок
       </button>
 
