@@ -10,8 +10,9 @@ import { LoggingService } from 'src/app/modules/log/services/logging.service';
   styleUrls: ['./edit-log.component.scss'],
 })
 export class EditLogComponent implements OnInit {
-  picker: any;
-
+  beginingPicker: any;
+  endingPicker: any;
+  beginingTime: any;
   types: string[] = [
     'A: Вызов машинист',
     'B: Вызов скорой помощи',
@@ -38,8 +39,12 @@ export class EditLogComponent implements OnInit {
     duration: new FormControl(this.data.duration, [
       Validators.required,
     ]),
+    beginingTime: new FormControl(
+      new Date(this.data.begining).getHours()+":"+
+      new Date(this.data.begining).getMinutes(), [
+      Validators.required,
+    ]),
   });
-  selected = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ILogData,
     protected loggingService: LoggingService
@@ -61,6 +66,7 @@ export class EditLogComponent implements OnInit {
 
   submit() { //save log
     console.log(this.form.value);
+    console.log(this.beginingTime)
     this.form.value.type = this.form.value.type[0] //taking only the first letter 
     if (this.data.id)
     this.loggingService.editLog(this.data.id,this.form.value)

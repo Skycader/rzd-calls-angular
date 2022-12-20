@@ -2,54 +2,75 @@
 <div mat-dialog-content>
   <div class="container">
     <form [formGroup]="form" (ngSubmit)="submit()">
+      <h1>Звонок от {{ data.begining | date: "dd/MM/yyyy HH:mm" }}</h1>
+
+      <mat-form-field appearance="fill">
+        <mat-label>ФИО</mat-label>
+        <input matInput type="text" formControlName="caller" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Время начала</mat-label>
+        <input matInput [matDatepicker]="beginingPicker" formControlName="begining" />
+        <mat-datepicker-toggle matSuffix [for]="beginingPicker"></mat-datepicker-toggle>
+        <mat-datepicker #beginingPicker></mat-datepicker>
+      </mat-form-field>
+
       
-          <h1>Звонок от {{ data.begining | date: "dd/MM/yyyy HH:mm" }}</h1>
-
-          <mat-form-field appearance="fill">
-            <mat-label>ФИО</mat-label>
-            <input matInput type="text" formControlName="caller" />
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Время начала</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="begining">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Время конца</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="ending">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Тип звонка</mat-label>
-            <mat-select formControlName="type">
-              <mat-option *ngFor="let type of types" [value]="type">
-                {{ type }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Длительность звонка</mat-label>
-            <input matInput type="text" formControlName="duration" />
-          </mat-form-field>
-
-          <div mat-dialog-actions>
-            <button type="submit" color="primary" mat-raised-button mat-dialog-close>
-              Сохранить
-            </button>
-          </div>
-
-          <div mat-dialog-actions>
-            <button (click)="dropItem()" color="warn" mat-raised-button mat-dialog-close>
-              Удалить
-            </button>
-          </div>
         
+ 
+      <mat-form-field appearance="fill">
+        <mat-label>Время конца</mat-label>
+        <input matInput [matDatepicker]="endingPicker" formControlName="ending" />
+        <mat-datepicker-toggle matSuffix [for]="endingPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endingPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Тип звонка</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Длительность звонка</mat-label>
+        <input matInput type="text" formControlName="duration" />
+      </mat-form-field>
+
+      <div mat-dialog-actions>
+        <button
+          type="submit"
+          color="accent"
+          mat-raised-button
+          mat-dialog-close
+        >
+          Сохранить
+        </button>
+      </div>
+
+      <div mat-dialog-actions>
+        <button
+          (click)="dropItem()"
+          color="warn"
+          mat-raised-button
+          mat-dialog-close
+        >
+          Удалить
+        </button>
+      </div>
+
+      <div mat-dialog-actions>
+        <button
+          color="primary"
+          mat-raised-button
+          mat-dialog-close
+        >
+          Закрыть
+        </button>
+      </div>
     </form>
   </div>
 </div>

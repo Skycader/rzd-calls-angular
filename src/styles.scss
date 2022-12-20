@@ -105,3 +105,11 @@ textarea {
 hr {
   margin: .5rem 0;
 }
+
+.timepicker-overlay {
+  z-index: 1100 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 1100 !important;
+}

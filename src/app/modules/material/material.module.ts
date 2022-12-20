@@ -13,6 +13,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 
 const MaterialComponents = [
@@ -29,7 +30,8 @@ const MaterialComponents = [
   MatTableModule,
   MatDialogModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  NgxMaterialTimepickerModule,
 ]
 
 @NgModule({
