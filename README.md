@@ -1,5 +1,11 @@
 # RzdCalls
 
+Checkout out this project at [Firebase](https://rzd-call-center.web.app/)
+
+#Some fun facts:
+- It's using two-way list for storing logs
+- It's using Angular Material (ofc) 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
 
 ## Development server
