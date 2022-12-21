@@ -12,19 +12,18 @@ const sharedComponents = [
   LoginFirstComponent,
   ModalComponent,
   EditLogComponent,
-  TimerPipe
+  TimerPipe,
+  AutoFocusDirective
 ]
 @NgModule({
   declarations: [
     sharedComponents,
-    AutoFocusDirective,
   ],
   imports: [
     CommonModule,
     FormsModule,
     MaterialModule,
     ReactiveFormsModule,
-    
   ],
   exports: [
     sharedComponents
