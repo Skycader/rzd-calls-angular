@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { SharedModule } from './components/shared/shared.module';
 import { MaterialModule } from './modules/material/material.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -27,6 +28,12 @@ import { MaterialModule } from './modules/material/material.module';
     AppRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

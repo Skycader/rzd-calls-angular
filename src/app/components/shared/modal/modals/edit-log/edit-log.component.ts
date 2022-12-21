@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { ILogData } from 'src/app/modules/log/models/log';
 import { LoggingService } from 'src/app/modules/log/services/logging.service';
 
@@ -10,15 +11,29 @@ import { LoggingService } from 'src/app/modules/log/services/logging.service';
   styleUrls: ['./edit-log.component.scss'],
 })
 export class EditLogComponent implements OnInit {
-  beginingPicker: any;
-  endingPicker: any;
-  beginingTime: any;
+
+
   types: string[] = [
     'A: Вызов машинист',
     'B: Вызов скорой помощи',
     'C: Вызов МЧС',
     'D: Вызов Полиции',
   ];
+
+  darkTheme: NgxMaterialTimepickerTheme = {
+    container: {
+        bodyBackgroundColor: '#fff',
+        buttonColor: '#673ab7'
+    },
+    dial: {
+        dialBackgroundColor: '#673ab7',
+    },
+    clockFace: {
+        clockFaceBackgroundColor: '#673ab7',
+        clockHandColor: '#ffd740',
+        clockFaceTimeInactiveColor: '#fff'
+    }
+};
 
   form: FormGroup = new FormGroup({
     caller: new FormControl(this.data.caller, [
@@ -44,11 +59,19 @@ export class EditLogComponent implements OnInit {
       new Date(this.data.begining).getMinutes(), [
       Validators.required,
     ]),
+    endingTime: new FormControl(
+      new Date(this.data.ending).getHours()+":"+
+      new Date(this.data.ending).getMinutes(), [
+      Validators.required,
+    ]),
   });
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ILogData,
     protected loggingService: LoggingService
   ) {}
+
+
 
   getType(letter: string) {
     return this.types.filter((item) => item[0] == letter)[0];
@@ -56,6 +79,7 @@ export class EditLogComponent implements OnInit {
   ngOnInit() {
     console.log(this.data);
   }
+ 
 
 
   dropItem() {
@@ -66,8 +90,17 @@ export class EditLogComponent implements OnInit {
 
   submit() { //save log
     console.log(this.form.value);
-    console.log(this.beginingTime)
     this.form.value.type = this.form.value.type[0] //taking only the first letter 
+    const [bhours,bminutes] = this.form.value.beginingTime.split(":")
+    
+    this.form.value.begining.setHours(bhours)
+    this.form.value.begining.setMinutes(bminutes)
+
+    const [ehours,eminutes] = this.form.value.endingTime.split(":")
+    
+    this.form.value.ending.setHours(ehours)
+    this.form.value.ending.setMinutes(eminutes)
+
     if (this.data.id)
     this.loggingService.editLog(this.data.id,this.form.value)
     this.loggingService.renderLog()

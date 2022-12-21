@@ -8,6 +8,24 @@ button {
   margin-bottom: 5px;
 }
 
+mat-icon {
+  position: absolute;
+  bottom: 13px;
+  right: 5px;
+  color: #535353;
+  cursor: pointer;
+}
+
+.mat-dialog-content {
+  height: 600px;
+}
+
 ngx-material-timepicker-container {
   z-index: 10;
+}
+
+.timeForm {
+  display: flex;
+  order: column;
+  align-items: flex-end;
 }

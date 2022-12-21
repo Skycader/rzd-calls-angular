@@ -9,21 +9,79 @@
         <input matInput type="text" formControlName="caller" />
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Время начала</mat-label>
-        <input matInput [matDatepicker]="beginingPicker" formControlName="begining" />
-        <mat-datepicker-toggle matSuffix [for]="beginingPicker"></mat-datepicker-toggle>
-        <mat-datepicker #beginingPicker></mat-datepicker>
-      </mat-form-field>
+      <div class="timeForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Дата начала</mat-label>
+          <input
+            matInput
+            [matDatepicker]="beginingPicker"
+            formControlName="begining"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="beginingPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #beginingPicker></mat-datepicker>
+        </mat-form-field>
 
- 
-      <mat-form-field appearance="fill">
-        <mat-label>Время конца</mat-label>
-        <input matInput [matDatepicker]="endingPicker" formControlName="ending" />
-        <mat-datepicker-toggle matSuffix [for]="endingPicker"></mat-datepicker-toggle>
-        <mat-datepicker #endingPicker></mat-datepicker>
-      </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Время начала</mat-label>
+          <div class="beginingTime">
+            <input
+              class="timePicker"
+              matInput
+              [ngxTimepicker]="beginingTime"
+              [format]="24"
+              formControlName="beginingTime"
+            />
 
+            <mat-icon>access_time</mat-icon>
+
+            <ngx-material-timepicker
+              [theme]="darkTheme"
+              #beginingTime
+            ></ngx-material-timepicker>
+          </div>
+        </mat-form-field>
+      </div>
+      <br />
+
+      <div class="timeForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Дата конца</mat-label>
+          <input
+            matInput
+            [matDatepicker]="endingPicker"
+            formControlName="ending"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endingPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #endingPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Время конца</mat-label>
+          <div class="beginingTime">
+            <input
+              class="timePicker"
+              matInput
+              [ngxTimepicker]="endingTime"
+              [format]="24"
+              formControlName="endingTime"
+            />
+
+            <mat-icon>access_time</mat-icon>
+
+            <ngx-material-timepicker
+              [theme]="darkTheme"
+              #endingTime
+            ></ngx-material-timepicker>
+          </div>
+        </mat-form-field>
+      </div>
+      
       <mat-form-field appearance="fill">
         <mat-label>Тип звонка</mat-label>
         <mat-select formControlName="type">
@@ -39,12 +97,7 @@
       </mat-form-field>
 
       <div mat-dialog-actions>
-        <button
-          type="submit"
-          color="accent"
-          mat-raised-button
-          mat-dialog-close
-        >
+        <button type="submit" color="accent" mat-raised-button mat-dialog-close>
           Сохранить
         </button>
       </div>
@@ -61,11 +114,7 @@
       </div>
 
       <div mat-dialog-actions>
-        <button
-          color="primary"
-          mat-raised-button
-          mat-dialog-close
-        >
+        <button color="primary" mat-raised-button mat-dialog-close>
           Закрыть
         </button>
       </div>
