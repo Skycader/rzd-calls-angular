@@ -30,12 +30,13 @@
             <input
               class="timePicker"
               matInput
+              #beginingTimeInput
               [ngxTimepicker]="beginingTime"
               [format]="24"
               formControlName="beginingTime"
             />
 
-            <mat-icon>access_time</mat-icon>
+            <mat-icon (click)="clickBeginingTime()">access_time</mat-icon>
 
             <ngx-material-timepicker
               [theme]="darkTheme"
@@ -67,12 +68,13 @@
             <input
               class="timePicker"
               matInput
+              #endingTimeInput
               [ngxTimepicker]="endingTime"
               [format]="24"
               formControlName="endingTime"
             />
 
-            <mat-icon>access_time</mat-icon>
+            <mat-icon (click)="clickEndingTime()">access_time</mat-icon>
 
             <ngx-material-timepicker
               [theme]="darkTheme"
