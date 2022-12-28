@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/rzd-calls",
     "ignore": [
       "firebase.json",
       "**/.*",
