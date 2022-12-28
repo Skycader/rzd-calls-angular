@@ -11,9 +11,6 @@ export class AppComponent implements OnInit {
 
   constructor(protected userService: UserService) {}
   ngOnInit() {
-    const user = localStorage.getItem("currentUser")
-    if (user) {
-      this.userService.user = JSON.parse(user)
-    }
+    
   }
 }

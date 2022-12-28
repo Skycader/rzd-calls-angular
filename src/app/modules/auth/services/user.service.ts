@@ -6,19 +6,30 @@ import { Injectable } from '@angular/core';
 
 
 export class UserService {
-  user = {
+
+  get user() {
+    if (this._user.login) {
+      return this._user
+    }
+
+    const user = localStorage.getItem("currentUser")
+    if (user) {
+      this._user = JSON.parse(user)
+    }
+    return this._user
+  }
+
+  _user = {
     login: "",
     password: ""
   }
-
-  
 
   constructor() { }
 
   signIn(login: string, password: string) {
     if (localStorage.getItem(`user.${login}`) !== null) {
       if (localStorage.getItem(`user.${login}`) === password) {
-        this.user = {
+        this._user = {
           login,
           password
         }
