@@ -18,7 +18,7 @@ import { LoggingService } from 'src/app/modules/log/services/logging.service';
 })
 export class EditLogComponent implements OnInit {
   types: string[] = [
-    'A: Вызов машинист',
+    'A: Вызов машиниста',
     'B: Вызов скорой помощи',
     'C: Вызов МЧС',
     'D: Вызов Полиции',
